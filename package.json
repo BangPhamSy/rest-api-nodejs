@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "server": "nodemon src/server.ts"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/hpp": "^0.2.1",
+    "@types/morgan": "^1.9.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "envalid": "^7.1.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/mongoose": "^5.10.5",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4"
+  }
+}
