@@ -1,9 +1,14 @@
 import { Request,Response,NextFunction } from "express";
-
+import UserService from './users.service';
+import RegisterDto from './dtos/register.dto';
 export default class UsersController {
-    public index = (req: Request, res: Response, next: NextFunction) => {
+    private userService = new UserService();
+
+    public register = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            res.status(200).json("Api users running...")
+            const model: RegisterDto = req.body;
+            const tokenData: TokenData = await this.userService.createUser(model);
+            res.status(201).json(tokenData);
         } catch(error) {
             next(error);
         }
