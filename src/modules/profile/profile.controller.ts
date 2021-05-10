@@ -1,5 +1,6 @@
 import { IUser } from "@modules/users";
 import { Request, Response, NextFunction } from "express";
+import AddEducationDto from "./dtos/add_education";
 import AddExperienceDto from "./dtos/add_experience.dto";
 import CreateProfileDto from "./dtos/create_profile.dto";
 import { IProfile } from "./profile.interface";
@@ -112,5 +113,41 @@ class ProfileController {
         next(error);
       }
     }
+
+    public createEducation = async (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => {
+      const data: AddEducationDto = req.body;
+      const userId = req.user.id;
+      try {
+        const createUserData: IProfile = await this.profileService.addEducation(
+          userId,
+          data
+        );
+        res.status(201).json(createUserData);
+      } catch (error) {
+        next(error);
+      }
+    };
+  
+    public deleteEducation = async (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => {
+      const eduId: string = req.params.edu_id;
+  
+      try {
+        const profile = await this.profileService.deleteEducation(
+          req.user.id,
+          eduId
+        );
+        res.status(200).json(profile);
+      } catch (error) {
+        next(error);
+      }
+    };
 }
 export default ProfileController;
