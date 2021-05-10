@@ -7,6 +7,7 @@ import { isEmptyObject } from "@core/utils/helpers";
 import gravatar from "gravatar";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { IPagination } from "@core/interfaces";
 
 class UserService {
 	public userSchema = UserSchema;
@@ -90,6 +91,45 @@ class UserService {
 		}
 		return user;
 	}
+
+    public async getAll() : Promise<IUser[]> {
+        const users = await this.userSchema.find().exec();
+        return users;
+    }
+
+    public async getAllPaging(keyword: string, page: number) : Promise<IPagination<IUser>> {
+        const pageSize: number = Number(process.env.PAGE_SIZE || 10);
+        let query = {};
+        if (keyword) {
+            query = {
+              $or: [
+                { email: keyword },
+                { first_name: keyword },
+                { last_name: keyword },
+              ],
+            };
+        }
+        const users = await this.userSchema
+        .find(query)
+        .skip((page - 1) * pageSize)
+        .limit(pageSize)
+        .exec();
+        const rowCount = await this.userSchema.find(query).countDocuments().exec();
+        return {
+            total: rowCount,
+            page: page,
+            pageSize: pageSize,
+            items: users,
+        } as IPagination<IUser>;
+    }
+
+    public async deleteUser(userId: string) : Promise<IUser> {
+        const deleteUser = await this.userSchema.findByIdAndDelete(userId);
+        if(!deleteUser) {
+            throw new HttpException(400, 'User not is exist');
+        }
+        return deleteUser;
+    }
 
 	private createToken(user: IUser): TokenData {
 		const dataInToken: DataStoredInToken = { id: user._id };

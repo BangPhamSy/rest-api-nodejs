@@ -1,4 +1,5 @@
 import { Route } from "@core/interfaces";
+import { authMiddleware } from "@core/middleware";
 import validationMiddleware from "@core/middleware/validation.middleware";
 import { Router } from "express";
 import RegisterDto from "./dtos/register.dto";
@@ -29,5 +30,19 @@ export default class UsersRoute implements Route {
 			this.path + "/:id",
 			this.usersController.getUserById,
 		); //GET: https://localhost:5000/api/users
+
+    this.router.get(
+			this.path,
+			this.usersController.getAll,
+		);
+    this.router.get(
+			this.path + '/paging/:page',
+			this.usersController.getAllPaging,
+		);
+    this.router.delete(
+      this.path + '/:id',
+      authMiddleware,
+      this.usersController.deleteUser
+    );
 	}
 }
