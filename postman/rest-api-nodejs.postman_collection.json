@@ -1,0 +1,757 @@
+{
+	"info": {
+		"_postman_id": "9f8fec51-ed9e-4a4b-93ac-24102f809c22",
+		"name": "rest-api-nodejs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Test API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5005/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Bang\",\r\n    \"last_name\": \"Pham\",\r\n    \"email\": \"bangpham@gmail.com\",\r\n    \"password\": \"123456$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"bangpham@gmail.com\",\r\n    \"password\": \"123456$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get Current User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNWY1NTMyNzBkMjFhYzFlODg3ZCIsImlhdCI6MTYyMDYzNDM4NCwiZXhwIjoxNjIwNjM0NDQ0fQ.xa0cNrHik7kK9L6qZQg_wNHEc_UNOXrG_8foiy_7f8Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Get User By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/users/6098e5f553270d21ac1e887d",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"6098e5f553270d21ac1e887d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNWY1NTMyNzBkMjFhYzFlODg3ZCIsImlhdCI6MTYyMDYzNTY2MiwiZXhwIjoxNjIwNjM5MjYyfQ.Y5AHPbVPnIpW8zg37SaOJlrb6xLgUAct1TSY5wbicXc"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Bang \",\r\n    \"last_name\": \"PS\",\r\n    \"email\": \"bangphamsy97@gmail.com\",\r\n    \"password\": \"123456$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/users/6098e5f553270d21ac1e887d",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"6098e5f553270d21ac1e887d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Get All",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Get All Paging",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/users/paging/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"paging",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/users/6098e6fcdecb198830d4492d",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"users",
+						"6098e6fcdecb198830d4492d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Create Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\": \"iCOMM\",\r\n    \"location\": \"Hanoi\",\r\n    \"website\": \"icomm.vn\",\r\n    \"bio\": \"sample\",\r\n    \"skills\": \"C#, Nodejs, Vuejs\",\r\n    \"status\": \"single\",\r\n    \"youtube\": \"BangPhamChanel\",\r\n    \"twitter\": \"BangPham\",\r\n    \"instagram\":  \"BangPham\",\r\n    \"linkedin\": \"test\",\r\n    \"facebook\": \"facebook.com/bang.ps\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Get Current Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/profile/me",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. Get All Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12. Add experience",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Developer\",\r\n    \"company\": \"iCOMM\",\r\n    \"location\": \"HaNoi\",\r\n    \"from\": \"2020/02/23\",\r\n    \"to\": \"2021/06/10\",\r\n    \"current\": true,\r\n    \"description\": \"Build a Social Buzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/profile/experience/609903ac58f2ea781ca065fa",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"experience",
+						"609903ac58f2ea781ca065fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13. Delete experience",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOThlNmZjZGVjYjE5ODgzMGQ0NDkyZCIsImlhdCI6MTYyMDYzNzI4MiwiZXhwIjoxNjIwNjQwODgyfQ.MVyn263FyCQxX6tQJeEa284O2k3dkt0Ekf07vGiL9Cw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Developer\",\r\n    \"company\": \"iCOMM\",\r\n    \"location\": \"HaNoi\",\r\n    \"from\": \"2020/02/23\",\r\n    \"to\": \"2021/06/10\",\r\n    \"current\": true,\r\n    \"description\": \"Build a Social Buzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/profile/experience/609903ac58f2ea781ca065fa",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"experience",
+						"609903ac58f2ea781ca065fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14. Create Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTk0MmYxYjZmZDBhMjJiY2JiMjdlNCIsImlhdCI6MTYyMDY1NzEzNSwiZXhwIjoxNjIwNjYwNzM1fQ.RgKx5BivSrl2TROck290WDITB9JcPrh5UTGIgKuTvUM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Tại sao cần học lập trình?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "15. Update Post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTk0MmYxYjZmZDBhMjJiY2JiMjdlNCIsImlhdCI6MTYyMDY1NzEzNSwiZXhwIjoxNjIwNjYwNzM1fQ.RgKx5BivSrl2TROck290WDITB9JcPrh5UTGIgKuTvUM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Tại sao cần học lập trình trong năm 2021?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/posts/609943fde7ae6c294423185f",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"609943fde7ae6c294423185f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16. Get All Paging Post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTk0MmYxYjZmZDBhMjJiY2JiMjdlNCIsImlhdCI6MTYyMDY1ODk0MywiZXhwIjoxNjIwNjYyNTQzfQ.ezkCxRWcZoimmslZkIjeJ48cLiJHl7WB_G5hh2YWEz4",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/posts/paging/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"paging",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "17. Get Post By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTk0MmYxYjZmZDBhMjJiY2JiMjdlNCIsImlhdCI6MTYyMDY1NzEzNSwiZXhwIjoxNjIwNjYwNzM1fQ.RgKx5BivSrl2TROck290WDITB9JcPrh5UTGIgKuTvUM",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/posts/609943fde7ae6c294423185f",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"609943fde7ae6c294423185f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "18. Delete Post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTk0MmYxYjZmZDBhMjJiY2JiMjdlNCIsImlhdCI6MTYyMDY1ODk0MywiZXhwIjoxNjIwNjYyNTQzfQ.ezkCxRWcZoimmslZkIjeJ48cLiJHl7WB_G5hh2YWEz4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5005/api/v1/posts/60994b2d3bbb541c1cefb240",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"60994b2d3bbb541c1cefb240"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
