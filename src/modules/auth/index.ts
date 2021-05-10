@@ -1,2 +1,3 @@
 import {DataStoredInToken, TokenData} from './auth.interface';
-export {DataStoredInToken, TokenData}
+import AuthRoute from './auth.route';
+export {DataStoredInToken, TokenData, AuthRoute}
