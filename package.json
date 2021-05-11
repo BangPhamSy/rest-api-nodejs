@@ -3,14 +3,7 @@
     "server": "nodemon src/server.ts",
     "build": "webpack",
     "start": "node dist/server.js",
-    "run:dev": "cross-env NODE_ENV=development nodemon dist/server.js",
-    "lint": "eslint . --ext .ts",
-    "lint-and-fix": "eslint . --ext .ts --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
+    "run:dev": "cross-env NODE_ENV=development nodemon dist/server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

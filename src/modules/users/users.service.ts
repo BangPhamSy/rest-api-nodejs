@@ -3,11 +3,11 @@ import IUser from "./users.interface";
 import UserSchema from "./users.model";
 import { DataStoredInToken, TokenData } from "@modules/auth";
 import RegisterDto from "./dtos/register.dto";
-import { isEmptyObject } from "@core/utils/helpers";
+import { generateJwtToken, isEmptyObject, randomTokenString } from "@core/utils/helpers";
 import gravatar from "gravatar";
 import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { IPagination } from "@core/interfaces";
+import { RefreshTokenSchema } from "@modules/refresh_token";
 
 class UserService {
   public userSchema = UserSchema;
@@ -34,7 +34,10 @@ class UserService {
       avatar: avatar,
       date: Date.now(),
     });
-    return this.createToken(createdUser);
+    const refreshToken = await this.generateRefreshToken(createdUser._id);
+    await refreshToken.save();
+
+    return generateJwtToken(createdUser._id, refreshToken.token);
   }
 
   public async updateUser(userId: string, model: RegisterDto): Promise<IUser> {
@@ -50,15 +53,22 @@ class UserService {
 
     let avatar = user.avatar;
 
-    if (user.email === model.email) {
-      throw new HttpException(400, "You must using the difference email");
-    } else {
-      avatar = gravatar.url(model.email!, {
-        size: "200",
-        rating: "g",
-        default: "mm",
-      });
+    const checkEmailExist = await this.userSchema
+      .find({
+        $and: [{ email: { $eq: model.email } }, { _id: { $ne: userId } }],
+      })
+      .exec();
+    if (checkEmailExist.length !== 0) {
+      throw new HttpException(400, 'Your email has been used by another user');
     }
+
+    avatar = gravatar.url(model.email!, {
+      size: '200',
+      rating: 'g',
+      default: 'mm',
+    });
+
+
     let updateUserById;
 
     if (user.password) {
@@ -133,14 +143,13 @@ class UserService {
     }
     return deleteUser;
   }
-
-  private createToken(user: IUser): TokenData {
-    const dataInToken: DataStoredInToken = { id: user._id };
-    const secret: string = process.env.JWT_TOKEN_SECRET!;
-    const expiresIn: number = 3600;
-    return {
-      token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
-    };
+  private generateRefreshToken(userId: string) {
+    // create a refresh token that expires in 7 days
+    return new RefreshTokenSchema({
+      user: userId,
+      token: randomTokenString(),
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
   }
 }
 export default UserService;

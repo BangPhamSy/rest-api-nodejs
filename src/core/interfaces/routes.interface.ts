@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 interface Route {
-    path: String,
+    path: string,
     router: Router
 }
 export default Route
