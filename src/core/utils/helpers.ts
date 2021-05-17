@@ -13,7 +13,7 @@ export const randomTokenString = (): string => {
 export const generateJwtToken = (userId: string, refreshToken: string): TokenData => {
   const dataInToken: DataStoredInToken = { id: userId };
   const secret: string = process.env.JWT_TOKEN_SECRET ?? '';
-  const expiresIn = 3600; //in seconds
+  const expiresIn = 10; //in seconds
   return {
     token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
     refreshToken: refreshToken,

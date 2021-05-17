@@ -58,7 +58,8 @@ class App {
   }
 
   private connectToDatabase() {
-    const connectionString = process.env.MONGODB_URI;
+    const connectionString =  process.env.NODE_ENV == "production" ? process.env.MONGO_PRODUCTION : process.env.MONGODB_URI;
+    console.log('connectionString:',connectionString);
     if (!connectionString) {
       Logger.error("Connection string is invalid");
       return;
